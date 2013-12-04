@@ -1,0 +1,17 @@
+﻿@model IEnumerable<scoutfjallstugan.se.Models.Member>
+
+@{
+    ViewBag.Title = "Medlemmar";
+}
+
+<ul data-role="listview" data-filter="true" > 
+@foreach (var item in Model) {
+    <li>
+        <a href="@Url.Action("Details", new { item.Id })">
+        <h2>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</h2>
+        <p>@Html.DisplayFor(modelItem => item.PatrolName)</p>
+        </a>
+    </li>
+}
+</ul>
+

@@ -1,0 +1,16 @@
+﻿@if (Request.IsAuthenticated) {
+  
+      <div class="nav nav-pills pull-right loginpadding">Hej, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "", title = "Manage" })!</div>
+      <div class="nav nav-pills  loginpadding">
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+                @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+              }
+      </div>
+
+} else {
+    <ul class="nav nav-pills pull-right loginpadding">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

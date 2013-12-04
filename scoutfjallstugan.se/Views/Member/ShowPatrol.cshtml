@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "ShowPatrol";
+}
+
+<h2>Patrull</h2>
+
+<ul>
+  @for (int i=0; i < ViewBag.NumTimes; i++)
+  {
+    <li>@ViewBag.Message</li>
+  }
+</ul>

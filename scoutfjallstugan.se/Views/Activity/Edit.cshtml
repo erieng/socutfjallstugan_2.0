@@ -1,0 +1,54 @@
+﻿@model scoutfjallstugan.se.Models.Activity
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Activity</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ActivityName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ActivityName)
+            @Html.ValidationMessageFor(model => model.ActivityName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ActivityDateStart)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ActivityDateStart)
+            @Html.ValidationMessageFor(model => model.ActivityDateStart)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

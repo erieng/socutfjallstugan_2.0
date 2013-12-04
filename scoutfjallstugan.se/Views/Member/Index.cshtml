@@ -1,0 +1,77 @@
+﻿@model IEnumerable<scoutfjallstugan.se.Models.Member>
+
+@{
+    ViewBag.Title = "title";
+}
+
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Skapa ny", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatrolName)
+        </th>
+        <th style="column-width: 100px">
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th style="column-width: 100px">
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatrolName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.ActionLink("Ändra", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detaljer", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Ta bort", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
