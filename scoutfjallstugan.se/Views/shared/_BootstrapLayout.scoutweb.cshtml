@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>@ViewBag.Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="@Styles.Url("~/content/css")" rel="stylesheet"/>
+  @RenderSection("head", required: false)
+  @Html.Partial("_html5shiv")
+  @* favicons and touch icons go here *@
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="#">Scout Fjällstugan</a>
+        <ul class="nav">
+          @Html.MenuLink("Link 1", "Index", "Home")
+          @Html.MenuLink("Link 2", "Index", "Home")
+          @Html.MenuLink("Link 3", "Index", "Home")
+          @Html.MenuLink("Link 4", "Index", "Home")
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    @Html.Partial("_alerts")
+    @Html.Partial("_validationSummary")
+    @RenderBody()
+    <hr>
+    <footer>
+      <p>&copy; Scout Fjällstugan @System.DateTime.Now.ToString("yyyy")</p>
+    </footer>
+  </div>
+  @Scripts.Render("~/js")
+  @RenderSection("Scripts", required: false)
+</body>
+</html>
+

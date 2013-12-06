@@ -18,7 +18,7 @@ namespace scoutfjallstugan.se.Controllers
 
         //
         // GET: /Member/
-        [ValidateAntiForgeryToken]
+        
         public ActionResult Index()
         {
             return View(db.Members.ToList());
@@ -26,7 +26,7 @@ namespace scoutfjallstugan.se.Controllers
 
         //
         // GET: /Member/Details/5
-        [ValidateAntiForgeryToken]
+        
         public ActionResult Details(Guid id)
         {
             Member member = db.Members.Find(id);
@@ -39,7 +39,7 @@ namespace scoutfjallstugan.se.Controllers
 
         //
         // GET: /Member/Create
-       [ValidateAntiForgeryToken]
+       
         public ActionResult Create()
         {
             return View();
@@ -49,7 +49,7 @@ namespace scoutfjallstugan.se.Controllers
         // POST: /Member/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult Create(Member member)
         {
             if (ModelState.IsValid)
@@ -80,14 +80,13 @@ namespace scoutfjallstugan.se.Controllers
         // POST: /Member/Edit/5
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Member member)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(member).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("SearchPatrol");
             }
             return View(member);
         }
@@ -109,7 +108,7 @@ namespace scoutfjallstugan.se.Controllers
         // POST: /Member/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult DeleteConfirmed(Guid id)
         {
             Member member = db.Members.Find(id);

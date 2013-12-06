@@ -1,13 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>@ViewBag.Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  @Scripts.Render("~/bundles/modernizr")
-  @Styles.Render("~/styles/bootstrap")
-  @Styles.Render("~/styles/site")
+  @Styles.Render("~/content/css")
 
   @RenderSection("head", required: false)
 
@@ -33,8 +32,7 @@
     </div>
   </div>
 
-  @Scripts.Render("~/bundles/jquery")
-  @Scripts.Render("~/bundles/bootstrap")
-  @RenderSection("scripts", required: false)
+  @Scripts.Render("~/js")
+  @RenderSection("Scripts", required: false)
 </body>
 </html>
