@@ -255,11 +255,6 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Activity\Create.cshtml" />
-    <Content Include="Views\Activity\Delete.cshtml" />
-    <Content Include="Views\Activity\Details.cshtml" />
-    <Content Include="Views\Activity\Edit.cshtml" />
-    <Content Include="Views\Activity\Index.cshtml" />
     <Content Include="Views\Attend\Create.cshtml" />
     <Content Include="Views\Attend\Delete.cshtml" />
     <Content Include="Views\Attend\Details.cshtml" />
@@ -285,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Activity\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
