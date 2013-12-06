@@ -261,7 +261,6 @@
     <Content Include="Views\Attend\Edit.cshtml" />
     <Content Include="Views\Attend\Index.cshtml" />
     <Content Include="Views\Member\Details.cshtml" />
-    <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\Index.mobile.cshtml" />
     <Content Include="Views\Member\SearchPatrol.cshtml" />
     <Content Include="Views\Member\ShowPatrol.cshtml" />
