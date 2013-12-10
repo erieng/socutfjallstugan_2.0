@@ -17,6 +17,9 @@ namespace scoutfjallstugan.se.Models
     public DbSet<Attend> Attendies { get; set; }
     public DbSet<Activity> Activities { get; set; }
 
-   
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+      modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+    }
   }
 }

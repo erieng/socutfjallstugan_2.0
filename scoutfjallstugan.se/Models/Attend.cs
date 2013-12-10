@@ -10,6 +10,8 @@ namespace scoutfjallstugan.se.Models
 {
   public class Attend
   {
+    public int AttendId { get; set; }
+
     [Key][Column(Order = 0)]
     [ForeignKey("Member")]
     public Guid MemberId { get; set; }
