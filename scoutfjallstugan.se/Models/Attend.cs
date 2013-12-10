@@ -11,10 +11,17 @@ namespace scoutfjallstugan.se.Models
   public class Attend
   {
     [Key][Column(Order = 0)]
+    [ForeignKey("Member")]
     public Guid MemberId { get; set; }
+    
     [Key][Column(Order = 1)]
+    [ForeignKey("Activity")]
     public Guid ActivityId { get; set; }
     public bool Extra { get; set; }
+
+
+    public virtual Member Member { get; set; }
+    public virtual Activity Activity { get; set; }
   }
 
   

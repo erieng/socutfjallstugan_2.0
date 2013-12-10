@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace scoutfjallstugan.se.Models
 {
@@ -44,6 +46,8 @@ namespace scoutfjallstugan.se.Models
 
     [DisplayName("Är ledare")]
     public bool IsLeader { get; set; }
+
+    public virtual ICollection<Attend> Attendies { get; set; } 
   }
 
  

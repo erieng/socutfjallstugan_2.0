@@ -207,6 +207,9 @@
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\html5shiv.js" />
+    <Content Include="CodeTemplates\ReverseEngineerCodeFirst\Context.tt" />
+    <Content Include="CodeTemplates\ReverseEngineerCodeFirst\Entity.tt" />
+    <Content Include="CodeTemplates\ReverseEngineerCodeFirst\Mapping.tt" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
@@ -259,7 +262,6 @@
     <Content Include="Views\Attend\Delete.cshtml" />
     <Content Include="Views\Attend\Details.cshtml" />
     <Content Include="Views\Attend\Edit.cshtml" />
-    <Content Include="Views\Attend\Index.cshtml" />
     <Content Include="Views\Member\Details.cshtml" />
     <Content Include="Views\Member\Index.mobile.cshtml" />
     <Content Include="Views\Member\SearchPatrol.cshtml" />

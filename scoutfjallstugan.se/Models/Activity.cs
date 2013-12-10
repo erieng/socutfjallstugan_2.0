@@ -16,11 +16,11 @@ namespace scoutfjallstugan.se.Models
     public string ActivityName { get; set; }
 
     [DisplayName("Starttid")]
-    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
     public DateTime ActivityDateStart { get; set; }
 
     [DisplayName("Sluttid")]
-    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
     public DateTime ActivityDateEnd { get; set; }
 
     [DisplayName("Beskrivning")]
@@ -30,7 +30,9 @@ namespace scoutfjallstugan.se.Models
     public bool OnlyLeaders { get; set; }
 
     [DisplayName("Ansvarig")]
-    public bool Responsibility { get; set; }
+    public string Responsibility { get; set; }
+
+    public virtual ICollection<Attend> Attendies { get; set; } 
   }
 
 

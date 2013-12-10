@@ -120,7 +120,7 @@ namespace scoutfjallstugan.se.Controllers
         {
           var activities = from a in db.Activities select a;
 
-          return View(activities.Where(x => x.OnlyLeaders == false));
+          return View(activities.Where(x => x.OnlyLeaders == false).OrderBy(activity => activity.ActivityDateStart));
         }
 
         protected override void Dispose(bool disposing)
