@@ -23,7 +23,7 @@
       <ul class="nav navbar-nav">
         <li class="@ActiveItem("Index", "Home", null)">@Html.ActionLink("Start", "Index", "Home")</li>
         <li class="@ActiveItem("SearchPatrol", "Member", null)">@Html.ActionLink("Medlemmar", "SearchPatrol", "Member")</li>
-        <li class="@ActiveItem("Contact", "Home", null)">@Html.ActionLink("Contact", "Contact", "Home")</li>
+        <li class="@ActiveItem("Index", "Activity", null)">@Html.ActionLink("Aktiviteter", "Index", "Activity")</li>
       </ul>
      @Html.Partial("_LoginPartial") 
     </div>
@@ -62,7 +62,7 @@
         <ul class="nav">
           <li class="@ActiveItem("Index", "Home", null)">@Html.ActionLink("Start", "Index", "Home")</li>
           <li class="@ActiveItem("SearchPatrol", "Member", null)">@Html.ActionLink("Medlemmar", "SearchPatrol", "Member")</li>
-          <li class="@ActiveItem("Contact", "Home", null)">@Html.ActionLink("Contact", "Contact", "Home")</li>
+          <li class="@ActiveItem("Index", "Activity", null)">@Html.ActionLink("Aktiviteter", "Index", "Activity")</li>
         </ul>
         @Html.Partial("_LoginPartial")
       </div>
