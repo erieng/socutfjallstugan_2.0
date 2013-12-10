@@ -258,10 +258,6 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Attend\Create.cshtml" />
-    <Content Include="Views\Attend\Delete.cshtml" />
-    <Content Include="Views\Attend\Details.cshtml" />
-    <Content Include="Views\Attend\Edit.cshtml" />
     <Content Include="Views\Member\Details.cshtml" />
     <Content Include="Views\Member\Index.mobile.cshtml" />
     <Content Include="Views\Member\SearchPatrol.cshtml" />
@@ -283,6 +279,8 @@
     <Content Include="Views\Activity\Delete.cshtml" />
     <Content Include="Views\Activity\Edit.cshtml" />
     <Content Include="Views\Activity\Details.cshtml" />
+    <Content Include="Views\Attend\Index.cshtml" />
+    <Content Include="Views\Attend\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
