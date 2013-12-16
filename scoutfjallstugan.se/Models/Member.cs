@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Dynamic;
+using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 
 namespace scoutfjallstugan.se.Models
 {
@@ -15,7 +17,16 @@ namespace scoutfjallstugan.se.Models
     
     [DisplayName("Efternamn")]
     public string LastName { get; set; }
-    
+
+    [DisplayName("Namn")]
+    public string Name
+    {
+      get
+      {
+        return FirstName + " " + LastName;
+      }
+    }
+
     [DisplayName("Födelsedatum")]
     [DisplayFormat(DataFormatString = "{0:YYMMdd}")]
     public string BirthDate { get; set; }

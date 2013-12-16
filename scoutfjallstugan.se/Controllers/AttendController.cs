@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using BootstrapSupport;
 using scoutfjallstugan.se.Models;
 
 namespace scoutfjallstugan.se.Controllers
@@ -40,7 +42,7 @@ namespace scoutfjallstugan.se.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName");
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "Name");
             ViewBag.ActivityId = new SelectList(db.Activities, "Id", "ActivityName");
             return View();
         }
@@ -60,7 +62,7 @@ namespace scoutfjallstugan.se.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName", attend.MemberId);
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "Name", attend.MemberId);
             ViewBag.ActivityId = new SelectList(db.Activities, "Id", "ActivityName", attend.ActivityId);
             return View(attend);
         }
@@ -75,7 +77,7 @@ namespace scoutfjallstugan.se.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName", attend.MemberId);
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "Name", attend.MemberId);
             ViewBag.ActivityId = new SelectList(db.Activities, "Id", "ActivityName", attend.ActivityId);
             return View(attend);
         }
@@ -93,7 +95,7 @@ namespace scoutfjallstugan.se.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName", attend.MemberId);
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "Name", attend.MemberId);
             ViewBag.ActivityId = new SelectList(db.Activities, "Id", "ActivityName", attend.ActivityId);
             return View(attend);
         }
@@ -123,7 +125,7 @@ namespace scoutfjallstugan.se.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+      
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

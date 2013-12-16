@@ -1,0 +1,46 @@
+﻿@model scoutfjallstugan.se.Models.Member
+
+@{
+  ViewBag.Title = "Närvaro";
+}
+
+<h2>Närvaro</h2>
+
+<p>
+
+  
+  @using (Html.BeginForm("SearchPatrol", "Member", FormMethod.Get, new { @class = "form-inline" }))
+  {   
+    <p>
+      Patrull: @Html.DropDownList("patrols", "All")
+      
+      <input type="submit" value="Filter" class="btn" />
+    </p>
+  }
+    </p>
+    <table width="100%" class="table table-striped table-responsive">
+      <tr>
+        <th>Namn
+        </th>
+        <th>Närvaro
+        </th>
+        <th>Dräkt
+        </th>
+      </tr>
+       @foreach (var item in Model)
+       {
+         <tr>
+           <td>
+             @Html.DisplayFor(modelItem => item.Name)
+           </td>
+           <td>
+            
+           </td>
+           <td>
+             
+           </td>
+         </tr>
+       }
+    </table>
+  }
+</p>

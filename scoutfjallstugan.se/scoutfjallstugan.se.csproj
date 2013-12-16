@@ -173,7 +173,6 @@
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -186,6 +185,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\Attend.cs" />
+    <Compile Include="Models\AttendActivityModel.cs" />
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\ScoutDbContext.cs" />
@@ -289,6 +289,7 @@
     <Content Include="Views\Attend\Create.cshtml" />
     <Content Include="Views\Attend\Edit.cshtml" />
     <Content Include="Views\Attend\Delete.cshtml" />
+    <Content Include="Views\Attend\RegisterAttendie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
