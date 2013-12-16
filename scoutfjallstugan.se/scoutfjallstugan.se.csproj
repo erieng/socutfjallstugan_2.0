@@ -263,7 +263,6 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Member\Details.cshtml" />
     <Content Include="Views\Member\Index.mobile.cshtml" />
     <Content Include="Views\Member\SearchPatrol.cshtml" />
     <Content Include="Views\Member\ShowPatrol.cshtml" />
@@ -277,8 +276,6 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\shared\_BootstrapLayout.scoutweb.cshtml" />
-    <Content Include="Views\Member\Edit.cshtml" />
-    <Content Include="Views\Member\Create.cshtml" />
     <Content Include="Views\Activity\Index.cshtml" />
     <Content Include="Views\Activity\Create.cshtml" />
     <Content Include="Views\Activity\Delete.cshtml" />
