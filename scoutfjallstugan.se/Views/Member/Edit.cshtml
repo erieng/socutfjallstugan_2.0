@@ -1,0 +1,126 @@
+﻿@using System.Web.Optimization
+@using BootstrapSupport
+@model scoutfjallstugan.se.Models.Member
+
+@{
+  ViewBag.Title = "Ändra";
+}
+
+<h2>Ändra</h2>
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+  @Html.ValidationSummary(true)
+
+  <fieldset class="form-horizontal">
+    <legend>Medlem</legend>
+    @Html.HiddenFor(model => model.Id)
+
+    @Html.BeginControlGroupFor(model => model.FirstName)
+    @Html.LabelFor(model => model.FirstName, new { @class = "control-label" })
+    <div class="controls">
+      @Html.EditorFor(model => model.FirstName)
+      @Html.ValidationMessageFor(model => model.FirstName)
+    </div>
+    @Html.EndControlGroup()
+
+
+    @Html.BeginControlGroupFor(model => model.LastName)
+    @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
+    <div class="controls">
+      @Html.EditorFor(model => model.LastName)
+      @Html.ValidationMessageFor(model => model.LastName)
+    </div>
+    @Html.EndControlGroup()
+
+    @Html.BeginControlGroupFor(model => model.BirthDate)
+    @Html.LabelFor(model => model.BirthDate, new { @class = "control-label" })
+    <div class="controls">
+      @Html.EditorFor(model => model.BirthDate)
+      @Html.ValidationMessageFor(model => model.BirthDate)
+    </div>
+    @Html.EndControlGroup()
+
+
+    @Html.BeginControlGroupFor(model => model.PatrolName)
+    @Html.LabelFor(model => model.PatrolName, new { @class = "control-label" })
+    <div class="controls">
+      @Html.EditorFor(model => model.PatrolName)
+      @Html.ValidationMessageFor(model => model.PatrolName)
+    </div>
+    @Html.EndControlGroup()
+
+    @Html.BeginControlGroupFor(model => model.StreetAddress)
+    @Html.LabelFor(model => model.StreetAddress, new { @class = "control-label" })
+    <div class="controls">
+      @Html.EditorFor(model => model.StreetAddress)
+      @Html.ValidationMessageFor(model => model.StreetAddress)
+    </div>
+    @Html.EndControlGroup()
+
+    @Html.BeginControlGroupFor(model => model.ZipCode)
+    @Html.LabelFor(model => model.ZipCode, new { @class = "control-label" })
+    <div class="controls">
+      @Html.EditorFor(model => model.ZipCode)
+      @Html.ValidationMessageFor(model => model.ZipCode)
+    </div>
+    @Html.EndControlGroup()
+
+    @Html.BeginControlGroupFor(model => model.City)
+    @Html.LabelFor(model => model.City, new { @class = "control-label" })
+    <div class="controls">
+      @Html.EditorFor(model => model.City)
+      @Html.ValidationMessageFor(model => model.City)
+    </div>
+    @Html.EndControlGroup()
+
+    @Html.BeginControlGroupFor(model => model.Phone)
+    @Html.LabelFor(model => model.Phone, new { @class = "control-label" })
+    <div class="controls">
+      @Html.EditorFor(model => model.Phone)
+      @Html.ValidationMessageFor(model => model.Phone)
+    </div>
+    @Html.EndControlGroup()
+
+    @Html.BeginControlGroupFor(model => model.Mobile)
+    @Html.LabelFor(model => model.Mobile, new { @class = "control-label" })
+    <div class="controls">
+      @Html.EditorFor(model => model.Mobile)
+      @Html.ValidationMessageFor(model => model.Mobile)
+    </div>
+    @Html.EndControlGroup()
+
+    @Html.BeginControlGroupFor(model => model.Comment)
+    @Html.LabelFor(model => model.Comment, new { @class = "control-label" })
+    <div class="controls input-xlarge">
+      @Html.EditorFor(model => model.Comment)
+      @Html.ValidationMessageFor(model => model.Comment)
+    </div>
+    @Html.EndControlGroup()
+
+    @Html.BeginControlGroupFor(model => model.IsLeader)
+    <div class="control-label">Är ledare</div>
+    <div class="controls checkbox">
+      @Html.EditorFor(model => model.IsLeader)
+      @Html.ValidationMessageFor(model => model.IsLeader)
+    </div>
+    @Html.EndControlGroup()
+
+
+    <p></p>
+    <p>
+      <input class="btn btn-default btn-lg" type="submit" value="Save" />
+    </p>
+  </fieldset>
+}
+
+<div>
+  @Html.ActionLink("Tillbaka till lista", "SearchPatrol")
+</div>
+
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $('.datepicker').datepicker(); //Initialise any date pickers
+</script>
+}

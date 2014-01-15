@@ -12,6 +12,7 @@ namespace BootstrapSupport
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/jquery-migrate-{version}.js",
                 "~/Scripts/bootstrap.js",
+                "~/Scripts/bootstrap-datepicker.js",
                 "~/Scripts/jquery.validate.js",
                 "~/scripts/jquery.validate.unobtrusive.js",
                 "~/Scripts/jquery.validate.unobtrusive-custom-for-bootstrap.js"
@@ -20,6 +21,7 @@ namespace BootstrapSupport
             bundles.Add(new StyleBundle("~/content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/body.css",
+                "~/Content/bootstrap-datepicker.css",
                 "~/Content/bootstrap-responsive.css",
                 "~/Content/bootstrap-mvc-validation.css"
                 ));

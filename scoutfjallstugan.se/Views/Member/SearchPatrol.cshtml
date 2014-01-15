@@ -1,4 +1,5 @@
-﻿@model IEnumerable<scoutfjallstugan.se.Models.Member>
+﻿@using Microsoft.Web.Mvc.Html
+@model IEnumerable<scoutfjallstugan.se.Models.Member>
 
 @{
   ViewBag.Title = "Medlemmar";
@@ -8,31 +9,32 @@
 
 <p>
   @Html.ActionLink("Lägg till ny medlem", "Create")
-
+ 
   @using (Html.BeginForm("SearchPatrol", "Member", FormMethod.Get, new { @class = "form-inline" }))
   {   
     <p>
-      Patrull: @Html.DropDownList("patrols", "All")
+      Patrull: @Html.DropDownList("patrols", "Alla")
       Namn: @Html.TextBox("name")
+      Visa ledare: @Html.CheckBox("showLeader")
       <input type="submit" value="Filter" class="btn" />
     </p>
   }
 </p>
-<table width="100%" class="table table-striped table-responsive">
+<table class="table table-striped table-responsive table-condensed">
   <tr>
-    <th>Namn
+    <th style="width:15%">Namn
     </th>
-    <th>Födelsedat
+    <th class="hidden-xs">Födelsedat
     </th>
     <th>Patrull
     </th>
-    <th>Telefon
+    <th style="width:10%" class="hidden-xs">Telefon
     </th>
-    <th>Mobil
+    <th style="width:10%">Mobil
     </th>
-    <th>E-post
+    <th class="hidden-xs">E-post
     </th>
-    <th>Kommentar
+    <th class="hidden-xs">Kommentar
     </th>
     <th></th>
   </tr>
@@ -41,24 +43,24 @@
   {
     <tr>
       <td>
-        @Html.DisplayFor(modelItem => item.Name)
+        @Html.DisplayFor(modelItem => item.Name) @{if(item.IsLeader == true) {@Html.Raw(" (L)")}}
       </td>
-      <td>
+      <td class="hidden-xs">
         @Html.DisplayFor(modelItem => item.BirthDate)
       </td>
       <td>
         @Html.DisplayFor(modelItem => item.PatrolName)
       </td>
-      <td>
+      <td class="hidden-xs">
         @Html.DisplayFor(modelItem => item.Phone)
       </td>
       <td>
         @Html.DisplayFor(modelItem => item.Mobile)
       </td>
-      <td>
+      <td class="hidden-xs">
         @Html.DisplayFor(modelItem => item.Email)
       </td>
-      <td>
+      <td class="hidden-xs">
         @Html.DisplayFor(modelItem => item.Comment)
       </td>
       <td>
