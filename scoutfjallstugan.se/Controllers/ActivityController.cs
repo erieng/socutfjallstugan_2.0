@@ -116,11 +116,11 @@ namespace scoutfjallstugan.se.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult GetScoutSchema()
+        public ActionResult _ActivityListPartial()
         {
           var activities = from a in db.Activities select a;
 
-          return View(activities.Where(x => x.OnlyLeaders == false).OrderBy(activity => activity.ActivityDateStart));
+          return PartialView(activities.Where(a => a.OnlyLeaders == false).OrderBy(a => a.ActivityDateStart));
         }
 
         protected override void Dispose(bool disposing)

@@ -1,0 +1,11 @@
+﻿@model Type
+
+
+@foreach (var item in Model)
+{
+  <ul>
+    <li>
+      @Html.DisplayFor(modelItem => item.ActivityDateStart) @Html.DisplayFor(modelItem => item.ActivityDateStartTime)-@Html.DisplayFor(modelItem => item.ActivityDateEndTime) @Html.DisplayFor(modelItem => item.ActivityName)
+    </li>
+  </ul>
+}
