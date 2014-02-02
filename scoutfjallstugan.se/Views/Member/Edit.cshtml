@@ -89,6 +89,14 @@
       @Html.ValidationMessageFor(model => model.Mobile)
     </div>
     @Html.EndControlGroup()
+    
+     @Html.BeginControlGroupFor(model => model.Email)
+    @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+    <div class="controls">
+      @Html.EditorFor(model => model.Email)
+      @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    @Html.EndControlGroup()
 
     @Html.BeginControlGroupFor(model => model.Comment)
     @Html.LabelFor(model => model.Comment, new { @class = "control-label" })
@@ -103,6 +111,14 @@
     <div class="controls checkbox">
       @Html.EditorFor(model => model.IsLeader)
       @Html.ValidationMessageFor(model => model.IsLeader)
+    </div>
+    @Html.EndControlGroup()
+    
+    @Html.BeginControlGroupFor(model => model.IsInactive)
+    <div class="control-label">Ej aktiv</div>
+    <div class="controls checkbox">
+      @Html.EditorFor(model => model.IsInactive)
+      @Html.ValidationMessageFor(model => model.IsInactive)
     </div>
     @Html.EndControlGroup()
 

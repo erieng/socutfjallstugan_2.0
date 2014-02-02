@@ -10,168 +10,230 @@ using scoutfjallstugan.se.Models;
 
 namespace scoutfjallstugan.se.Controllers
 {
-    public class MemberController : Controller
+  public class MemberController : Controller
+  {
+    private ScoutDbContext db = new ScoutDbContext();
+
+    //
+    // GET: /Member/
+
+    public ActionResult Index()
     {
-        private ScoutDbContext db = new ScoutDbContext();
-
-        //
-        // GET: /Member/
-
-        public ActionResult Index()
-        {
-            return View(db.Members.ToList());
-        }
-
-        //
-        // GET: /Member/Details/5
-
-        public ActionResult Details(Guid id)
-        {
-            Member member = db.Members.Find(id);
-            if (member == null)
-            {
-                return HttpNotFound();
-            }
-            return View(member);
-        }
-
-        //
-        // GET: /Member/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Member/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Member member)
-        {
-            if (ModelState.IsValid)
-            {
-                member.Id = Guid.NewGuid();
-                db.Members.Add(member);
-                db.SaveChanges();
-                return RedirectToAction("SearchPatrol");
-            }
-
-            return View(member);
-        }
-
-        //
-        // GET: /Member/Edit/5
-
-        public ActionResult Edit(Guid id)
-        {
-            Member member = db.Members.Find(id);
-            if (member == null)
-            {
-                return HttpNotFound();
-            }
-            return View(member);
-        }
-
-        //
-        // POST: /Member/Edit/5
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Member member)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(member).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("SearchPatrol");
-            }
-            return View(member);
-        }
-
-        //
-        // GET: /Member/Delete/5
-
-        public ActionResult Delete(Guid id)
-        {
-            Member member = db.Members.Find(id);
-            if (member == null)
-            {
-                return HttpNotFound();
-            }
-            return View(member);
-        }
-
-        //
-        // POST: /Member/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
-        {
-            Member member = db.Members.Find(id);
-            db.Members.Remove(member);
-            db.SaveChanges();
-            return RedirectToAction("SearchPatrol");
-        }
-
-        public ActionResult SearchPatrol(string patrols, string name, bool? showLeader)
-        {
-          var PatrolLst = new List<string>();
-
-          var PatrolQry = from d in db.Members
-                          orderby d.PatrolName
-                          select d.PatrolName;
-          PatrolLst.AddRange(PatrolQry.Distinct());
-          ViewBag.patrols = new SelectList(PatrolLst);
-
-          var members = from m in db.Members 
-                        select m;
-
-          if (showLeader == false || showLeader == null)
-          {
-            members = members.Where(s => s.IsLeader == false);
-          }
-
-          if (!String.IsNullOrEmpty(name))
-          {
-            members = members.Where(s => s.FirstName.Contains(name) || s.LastName.Contains(name));
-          }
-          else
-          {
-            members = members.OrderBy(m => m.IsLeader).ThenBy(m => m.PatrolName).ThenBy(m => m.LastName);
-          }
-
-          if (string.IsNullOrEmpty(patrols))
-          {
-            return View(members.OrderBy(m => m.IsLeader).ThenBy(m => m.PatrolName).ThenBy(m => m.LastName));
-          }
-          else
-          {
-            return
-              View(
-                members.Where(x => x.PatrolName == patrols)
-                  .OrderBy(m => m.IsLeader).ThenBy(m => m.PatrolName)
-                  .ThenBy(m => m.LastName));
-          }
-
-
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
-        }
-
-      public ActionResult SendEmail(IEnumerable<Member> member)
-      {
-        foreach (var m in member)
-        {
-          
-        }
-        return null;
-      }
+      return View(db.Members.ToList());
     }
+
+    //
+    // GET: /Member/Details/5
+
+    public ActionResult Details(Guid id)
+    {
+      Member member = db.Members.Find(id);
+      if (member == null)
+      {
+        return HttpNotFound();
+      }
+      return View(member);
+    }
+
+    //
+    // GET: /Member/Create
+
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    //
+    // POST: /Member/Create
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Create(Member member)
+    {
+      if (ModelState.IsValid)
+      {
+        member.Id = Guid.NewGuid();
+        db.Members.Add(member);
+        db.SaveChanges();
+        return RedirectToAction("SearchPatrol");
+      }
+
+      return View(member);
+    }
+
+    //
+    // GET: /Member/Edit/5
+
+    public ActionResult Edit(Guid id)
+    {
+      var patrolLst = new List<string>();
+
+      var patrolQry = from d in db.Members
+                      orderby d.PatrolName
+                      select d.PatrolName;
+      patrolLst.AddRange(patrolQry.Distinct());
+      ViewBag.patrols = new SelectList(patrolLst);
+
+      Member member = db.Members.Find(id);
+      if (member == null)
+      {
+        return HttpNotFound();
+      }
+      return View(member);
+    }
+
+    //
+    // POST: /Member/Edit/5
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Edit(Member member)
+    {
+      var patrolLst = new List<string>();
+
+      var patrolQry = from d in db.Members
+                      orderby d.PatrolName
+                      select d.PatrolName;
+      patrolLst.AddRange(patrolQry.Distinct());
+      ViewBag.patrols = new SelectList(patrolLst);
+
+      if (ModelState.IsValid)
+      {
+        db.Entry(member).State = EntityState.Modified;
+        db.SaveChanges();
+        return RedirectToAction("SearchPatrol");
+      }
+      return View(member);
+    }
+
+    //
+    // GET: /Member/Delete/5
+
+    public ActionResult Delete(Guid id)
+    {
+      Member member = db.Members.Find(id);
+      if (member == null)
+      {
+        return HttpNotFound();
+      }
+      return View(member);
+    }
+
+    //
+    // POST: /Member/Delete/5
+
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public ActionResult DeleteConfirmed(Guid id)
+    {
+      Member member = db.Members.Find(id);
+      db.Members.Remove(member);
+      db.SaveChanges();
+      return RedirectToAction("SearchPatrol");
+    }
+
+    public ActionResult SearchPatrol(string patrols, string name, bool? showLeader, bool? showInactive)
+    {
+      var patrolLst = new List<string>();
+
+      var patrolQry = from d in db.Members
+                      orderby d.PatrolName
+                      select d.PatrolName;
+      patrolLst.AddRange(patrolQry.Distinct());
+      ViewBag.patrols = new SelectList(patrolLst);
+
+      var members = from m in db.Members
+                    select m;
+
+      if (showLeader == false || showLeader == null)
+      {
+        members = members.Where(s => s.IsLeader == false);
+      }
+      if (showInactive == false || showInactive == null)
+      {
+        members = members.Where(s => s.IsInactive == false);
+      }
+
+      if (!String.IsNullOrEmpty(name))
+      {
+        members = members.Where(s => s.FirstName.Contains(name) || s.LastName.Contains(name));
+      }
+      else
+      {
+        members = members.OrderBy(m => m.IsLeader).ThenBy(m => m.PatrolName).ThenBy(m => m.LastName);
+      }
+
+      if (string.IsNullOrEmpty(patrols))
+      {
+        return View(members.OrderBy(m => m.IsLeader).ThenBy(m => m.PatrolName).ThenBy(m => m.LastName));
+      }
+      else
+      {
+        return
+          View(
+            members.Where(x => x.PatrolName == patrols)
+              .OrderBy(m => m.IsLeader).ThenBy(m => m.PatrolName)
+              .ThenBy(m => m.LastName));
+      }
+
+
+    }
+
+    public void SendEmail(string patrols, string includeLeader, string subject, string message)
+    {
+      
+      var patrolLst = new List<string>();
+
+      var patrolQry = from d in db.Members
+                      orderby d.PatrolName
+                      select d.PatrolName;
+      patrolLst.AddRange(patrolQry.Distinct());
+      ViewBag.patrols = new SelectList(patrolLst);
+
+      var members = from m in db.Members
+                    select m;
+
+      if (includeLeader == "false" || includeLeader == "")
+      {
+        members = members.Where(s => s.IsLeader == false);
+      }
+
+      if (patrols != null)
+      {
+        members = members.Where(x => x.PatrolName == patrols)
+              .OrderBy(m => m.IsLeader).ThenBy(m => m.PatrolName)
+              .ThenBy(m => m.LastName);
+      }
+
+
+      SmtpClient scClient = new SmtpClient();
+      scClient.Host = "mailout1.surf-town.net";
+      scClient.Credentials = new System.Net.NetworkCredential("alltidredo@scoutfjallstugan.se", "allt1dr3d0");
+    //  foreach (var member in members)
+    //  {
+        var email = new MailMessage();
+        email.From = new MailAddress("scout@fjallstugan.se");
+        email.To.Add(new MailAddress("erik@engvall.net, erik.engvall@hotmail.com"));
+        email.Subject = "Testar";
+        email.Body = "Hej!\nNu finns programmet för scout-terminen på fjallstugan.se under Equmenia - Scout.";
+        
+     // }
+      scClient.Send(email);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+      db.Dispose();
+      base.Dispose(disposing);
+    }
+
+    public ActionResult SendEmail(IEnumerable<Member> member)
+    {
+      foreach (var m in member)
+      {
+
+      }
+      return null;
+    }
+  }
 }

@@ -1,4 +1,6 @@
-﻿@using Microsoft.Web.Mvc.Html
+﻿@using Microsoft.Web.Mvc
+@using Microsoft.Web.Mvc.Html
+@using scoutfjallstugan.se.Controllers
 @model IEnumerable<scoutfjallstugan.se.Models.Member>
 
 @{
@@ -16,9 +18,14 @@
       Patrull: @Html.DropDownList("patrols", "Alla")
       Namn: @Html.TextBox("name")
       Visa ledare: @Html.CheckBox("showLeader")
-      <input type="submit" value="Filter" class="btn" />
+      Visa ej aktiva: @Html.CheckBox("showInactive")
+      <input type="submit" value="Sök" class="btn" />
+      <div>Sökresultat: @Model.Count() st</div>
     </p>
   }
+  
+ 
+  
 </p>
 <table class="table table-striped table-responsive table-condensed">
   <tr>

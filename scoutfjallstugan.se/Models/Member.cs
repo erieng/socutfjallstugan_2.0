@@ -4,12 +4,14 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Dynamic;
+using System.Web.Mvc;
 using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 
 namespace scoutfjallstugan.se.Models
 {
   public class Member
   {
+   
     public Guid Id { get; set; }
 
     [DisplayName("Förnamn")]
@@ -57,6 +59,9 @@ namespace scoutfjallstugan.se.Models
 
     [DisplayName("Är ledare")]
     public bool IsLeader { get; set; }
+
+    [DisplayName("Ej aktiv")]
+    public bool IsInactive { get; set; }
 
     public virtual ICollection<Attend> Attendies { get; set; } 
   }

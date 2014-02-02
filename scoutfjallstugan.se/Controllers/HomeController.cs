@@ -8,7 +8,7 @@ namespace scoutfjallstugan.se.Controllers
 {
   public class HomeController : Controller
   {
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public ActionResult Index()
     {
       ViewBag.Message = "Välkommen till Equmenia-scout i Fjällstugan!";
