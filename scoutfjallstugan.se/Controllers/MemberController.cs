@@ -40,6 +40,14 @@ namespace scoutfjallstugan.se.Controllers
 
     public ActionResult Create()
     {
+      var patrolLst = new List<string>();
+
+      var patrolQry = from d in db.Members
+                      orderby d.PatrolName
+                      select d.PatrolName;
+      patrolLst.AddRange(patrolQry.Distinct());
+      ViewBag.patrols = new SelectList(patrolLst);
+
       return View();
     }
 
@@ -50,6 +58,14 @@ namespace scoutfjallstugan.se.Controllers
     [ValidateAntiForgeryToken]
     public ActionResult Create(Member member)
     {
+      var patrolLst = new List<string>();
+
+      var patrolQry = from d in db.Members
+                      orderby d.PatrolName
+                      select d.PatrolName;
+      patrolLst.AddRange(patrolQry.Distinct());
+      ViewBag.patrols = new SelectList(patrolLst);
+
       if (ModelState.IsValid)
       {
         member.Id = Guid.NewGuid();

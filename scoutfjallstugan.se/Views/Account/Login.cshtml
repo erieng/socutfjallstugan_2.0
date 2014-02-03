@@ -5,38 +5,40 @@
 }
 
 <div>
-	<fieldset>
-		<legend>Du måste logga in för att komma åt denna sida</legend>
+  <fieldset>
+    <legend>Du måste logga in för att komma åt denna sida</legend>
 
-		@if(ViewBag.Message != null)
-		{
-			<div class="alert alert-success">
-				@ViewBag.Message
-			</div>
-		}
+    @if(ViewBag.Message != null)
+    {
+      <div class="alert alert-success">
+        @ViewBag.Message
+      </div>
+    }
 
-		<fieldset class="span3">
+    <fieldset class="span3">
 			
-			@using (Html.BeginForm(new { returnUrl = ViewBag.ReturnUrl }))
-		{
-			@Html.AntiForgeryToken()
-			@Html.ValidationSummary(true)
-						<div>
-							@Html.LabelFor(m => m.UserName)
-							@Html.TextBoxFor(m => m.UserName)
-							@Html.ValidationMessageFor(m => m.UserName)
-						</div>
-			<div>
-				@Html.LabelFor(m => m.Password)
-							@Html.PasswordFor(m => m.Password)
-							@Html.ValidationMessageFor(m => m.Password)
-			</div>
-			<input type="submit" value="Log in" class="btn btn-primary" />
-			}
-		</fieldset>
-	</fieldset>
+      @using (Html.BeginForm(new { returnUrl = ViewBag.ReturnUrl }))
+      {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.LabelFor(m => m.UserName)
+        <div style="width:100%">
+          @Html.TextBoxFor(m => m.UserName)
+          @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+        <div style="width:100%">
+          @Html.LabelFor(m => m.Password)
+          @Html.PasswordFor(m => m.Password)
+          @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <input type="submit" value="Log in" class="btn btn-primary" /><div class="pull-right">@Html.ActionLink("Register", "Ny användare", new { returnUrl = ViewBag.ReturnUrl })</div>
+      }
+      
+    </fieldset>
+  </fieldset>
 </div>
 <div>
-	@Html.ActionLink("Register", "Register", new { returnUrl = ViewBag.ReturnUrl })&nbsp;
+  <a href="http://www.fjallstugan.se/equmenia/scout">Klicka här för att komma till Scout Fjällstugans hemsida. www.fjallstugan.se</a>
 </div>
+
 

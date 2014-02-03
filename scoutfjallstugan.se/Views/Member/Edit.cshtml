@@ -45,7 +45,7 @@
     @Html.BeginControlGroupFor(model => model.PatrolName)
     @Html.LabelFor(model => model.PatrolName, new { @class = "control-label" })
     <div class="controls">
-      @Html.EditorFor(model => model.PatrolName)
+      @Html.DropDownList("PatrolName", ViewBag.patrols as SelectList)
       @Html.ValidationMessageFor(model => model.PatrolName)
     </div>
     @Html.EndControlGroup()
