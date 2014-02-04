@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using scoutfjallstugan.se.Models;
 
 namespace scoutfjallstugan.se.Controllers
@@ -40,13 +41,7 @@ namespace scoutfjallstugan.se.Controllers
 
     public ActionResult Create()
     {
-      var patrolLst = new List<string>();
-
-      var patrolQry = from d in db.Members
-                      orderby d.PatrolName
-                      select d.PatrolName;
-      patrolLst.AddRange(patrolQry.Distinct());
-      ViewBag.patrols = new SelectList(patrolLst);
+      SetPatrolsViewBag();
 
       return View();
     }
@@ -58,20 +53,17 @@ namespace scoutfjallstugan.se.Controllers
     [ValidateAntiForgeryToken]
     public ActionResult Create(Member member)
     {
-      var patrolLst = new List<string>();
-
-      var patrolQry = from d in db.Members
-                      orderby d.PatrolName
-                      select d.PatrolName;
-      patrolLst.AddRange(patrolQry.Distinct());
-      ViewBag.patrols = new SelectList(patrolLst);
+      SetPatrolsViewBag();
 
       if (ModelState.IsValid)
       {
         member.Id = Guid.NewGuid();
         db.Members.Add(member);
         db.SaveChanges();
-        return RedirectToAction("SearchPatrol");
+
+       return RedirectToAction("SearchPatrol", ConvertToRouteArray());
+
+       
       }
 
       return View(member);
@@ -82,13 +74,7 @@ namespace scoutfjallstugan.se.Controllers
 
     public ActionResult Edit(Guid id)
     {
-      var patrolLst = new List<string>();
-
-      var patrolQry = from d in db.Members
-                      orderby d.PatrolName
-                      select d.PatrolName;
-      patrolLst.AddRange(patrolQry.Distinct());
-      ViewBag.patrols = new SelectList(patrolLst);
+      SetPatrolsViewBag();
 
       Member member = db.Members.Find(id);
       if (member == null)
@@ -105,19 +91,13 @@ namespace scoutfjallstugan.se.Controllers
     [ValidateAntiForgeryToken]
     public ActionResult Edit(Member member)
     {
-      var patrolLst = new List<string>();
-
-      var patrolQry = from d in db.Members
-                      orderby d.PatrolName
-                      select d.PatrolName;
-      patrolLst.AddRange(patrolQry.Distinct());
-      ViewBag.patrols = new SelectList(patrolLst);
+      SetPatrolsViewBag();
 
       if (ModelState.IsValid)
       {
         db.Entry(member).State = EntityState.Modified;
         db.SaveChanges();
-        return RedirectToAction("SearchPatrol");
+        return RedirectToAction("SearchPatrol", ConvertToRouteArray());
       }
       return View(member);
     }
@@ -145,18 +125,13 @@ namespace scoutfjallstugan.se.Controllers
       Member member = db.Members.Find(id);
       db.Members.Remove(member);
       db.SaveChanges();
-      return RedirectToAction("SearchPatrol");
+      return RedirectToAction("SearchPatrol", ConvertToRouteArray());
     }
 
     public ActionResult SearchPatrol(string patrols, string name, bool? showLeader, bool? showInactive)
     {
-      var patrolLst = new List<string>();
-
-      var patrolQry = from d in db.Members
-                      orderby d.PatrolName
-                      select d.PatrolName;
-      patrolLst.AddRange(patrolQry.Distinct());
-      ViewBag.patrols = new SelectList(patrolLst);
+      SetPatrolsViewBag();
+      SetQueryParamsViewBag(patrols, name, showLeader, showInactive);
 
       var members = from m in db.Members
                     select m;
@@ -197,14 +172,8 @@ namespace scoutfjallstugan.se.Controllers
 
     public void SendEmail(string patrols, string includeLeader, string subject, string message)
     {
-      
-      var patrolLst = new List<string>();
 
-      var patrolQry = from d in db.Members
-                      orderby d.PatrolName
-                      select d.PatrolName;
-      patrolLst.AddRange(patrolQry.Distinct());
-      ViewBag.patrols = new SelectList(patrolLst);
+      SetPatrolsViewBag();
 
       var members = from m in db.Members
                     select m;
@@ -235,6 +204,31 @@ namespace scoutfjallstugan.se.Controllers
         
      // }
       scClient.Send(email);
+    }
+
+    private void SetPatrolsViewBag()
+    {
+      var patrolLst = new List<string>();
+
+      var patrolQry = from d in db.Members
+                      orderby d.PatrolName
+                      select d.PatrolName;
+      patrolLst.AddRange(patrolQry.Distinct());
+      ViewBag.patrols = new SelectList(patrolLst);
+    }
+
+    private void SetQueryParamsViewBag(string patrols, string name, bool? showLeader, bool? showInactive)
+    {
+      ViewBag.queryParams = new {patrols = patrols, name = name, showLeader = showLeader, showInactive = showInactive};
+    }
+
+
+    private RouteValueDictionary ConvertToRouteArray()
+    {
+      var parsed = HttpUtility.ParseQueryString(string.Join(" ", Request.QueryString));
+      Dictionary<string, object> querystringDic = parsed.AllKeys.ToDictionary(k => k, k => (object)parsed[k]);
+
+      return new RouteValueDictionary(querystringDic);
     }
 
     protected override void Dispose(bool disposing)
